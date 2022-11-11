@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.game-container {
+  height: 40rem;
+  width: 50rem;
+  background: #cdcdcd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.word {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.word > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter {
+  font-size: 2rem;
+}
+
+.line {
+  height: 0.3rem;
+  width: 3rem;
+  background: #000;
+}
+
+.letters {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.letter-btn {
+  padding: 1rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  min-width: 4rem;
+}
+
+.guessed {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.hanged-man {
+  margin: 2rem 0;
+}
+
+.hide {
+  display: none;
+}
