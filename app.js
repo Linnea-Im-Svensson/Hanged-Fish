@@ -4,7 +4,9 @@ const menu = document.querySelector('.menu-container'),
       wordDiv = document.querySelector('.word'),
       letterBtn = document.querySelectorAll('.letter-btn'),
       hangedMan = document.querySelector('.hanged-man'),
-      resultContainer = document.querySelector('.result-container');
+      resultContainer = document.querySelector('.result-container'),
+      resultText = document.querySelector('.result'),
+      playAgainBtn = document.querySelector('.play-again');
 
 let guessedLetter = '',
     tries = 8;
@@ -14,7 +16,7 @@ async function fetchApi() {
 
   if(response.ok){
     const data = await response.json();
-    return data.word;
+    return data.word.toLowerCase();
   } else {
     console.log('error');
   }
@@ -24,7 +26,8 @@ function toggle(div){
   div.classList.toggle('hide');
 };
 
-function generateEpmtyLetters(fetchedWord, place) {
+//Generate the empty spaces for each letter in the word
+function generateEmptyLetters(fetchedWord) {
   let letterDiv = '';
   for (let i = 0; i < fetchedWord.length; i++){
     letterDiv += `
@@ -45,53 +48,92 @@ function updateHangedMan(tries) {
   hangedMan.innerHTML = tries;
 };
 
+//Check to see if player won or lost
 function checkWinCondition(){
+  let win = true;
+  const divList = document.querySelectorAll('.word > div');
+  divList.forEach(div => {
+    if (div.firstElementChild.classList[1] === 'hide') {
+      win = false;
+    }
+  });
 
+  if (win) {
+    resultText.innerText = 'You Won!';
+  } else {
+    resultText.innerText = 'You Lost';
+  }
+
+  toggle(game);
+  toggle(resultContainer);
 };
-
-toggle(menu);
 
 function newGame() {
   //reset
   guessedLetter = '',
-  tries = 8;
+  tries = 8,
+  flippedLetters = 0,
+  resultText.innerText = '';
+
+  letterBtn.forEach(div => {
+    div.classList.remove('guessed');
+  });
 
   fetchApi().then(word => {
     console.log(word);
-    const letterDiv = generateEpmtyLetters(word);
+    const letterDiv = generateEmptyLetters(word);
     wordDiv.innerHTML = letterDiv;
     generateHangedMan();
 
     letterBtn.forEach(letter => {
       let clicked = 0;
       
-        letter.addEventListener('click', () => {
-          clicked++;
-          if (clicked < 2){
-          guessedLetter = letter.className[0];
-          const emptyLetters = document.querySelectorAll('.word > div')
-          let status = false;
-            emptyLetters.forEach(emptyLetter => {
-              if (guessedLetter === emptyLetter.className[0]) {
-                emptyLetter.firstElementChild.classList.remove('hide');
-                status = true;
-              }
-
-              letter.classList.add('guessed');
-            })
-  
-            if (!status) {
-              tries--;
-              updateHangedMan(tries);
+      letter.addEventListener('click', (e) => {
+        clicked++;
+        if (clicked < 2){
+        guessedLetter = letter.className[0];
+        const emptyLetters = document.querySelectorAll('.word > div')
+        let status = false;
+          emptyLetters.forEach(emptyLetter => {
+            if (guessedLetter === emptyLetter.className[0]) {
+              emptyLetter.firstElementChild.classList.remove('hide');
+              flippedLetters++;
+              status = true;
             }
+
+            letter.classList.add('guessed');
+          })
+
+          if (!status) {
+            tries--;
+            updateHangedMan(tries);
           }
-        })
+
+          if(tries === 0){
+            checkWinCondition();
+          } else if(flippedLetters == word.length) {
+            checkWinCondition();
+          }
+        }
+        e.preventDefault();
+        // e.stopImmediatePropagation();
+        e.stopPropagation();
+      })
     })
   });
 }
 
+//Initiates the game
+toggle(menu);
+
 startBtn.addEventListener('click', () => {
+  newGame();
   toggle(menu);
   toggle(game);
-  newGame();
 });
+
+playAgainBtn.addEventListener('click', () => {
+  newGame();
+  toggle(resultContainer);
+  toggle(game);
+})
