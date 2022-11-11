@@ -2,11 +2,11 @@ const menu = document.querySelector('.menu-container'),
       game = document.querySelector('.game-container'),
       startBtn = document.querySelector('.start-game'),
       wordDiv = document.querySelector('.word'),
-      letterBtn = document.querySelectorAll('.letter-btn'),
       hangedMan = document.querySelector('.hanged-man'),
       resultContainer = document.querySelector('.result-container'),
       resultText = document.querySelector('.result'),
-      playAgainBtn = document.querySelector('.play-again');
+      playAgainBtn = document.querySelector('.play-again'),
+      buttonDiv = document.querySelector('.letters');
 
 let guessedLetter = '',
     tries = 8;
@@ -68,7 +68,39 @@ function checkWinCondition(){
   toggle(resultContainer);
 };
 
+function generateButtons(){
+  buttonDiv.innerHTML = `
+    <button class="a letter-btn">A</button>
+    <button class="b letter-btn">B</button>
+    <button class="c letter-btn">C</button>
+    <button class="d letter-btn">D</button>
+    <button class="e letter-btn">E</button>
+    <button class="f letter-btn">F</button>
+    <button class="g letter-btn">G</button>
+    <button class="h letter-btn">H</button>
+    <button class="i letter-btn">I</button>
+    <button class="j letter-btn">J</button>
+    <button class="k letter-btn">K</button>
+    <button class="l letter-btn">L</button>
+    <button class="m letter-btn">M</button>
+    <button class="n letter-btn">N</button>
+    <button class="o letter-btn">O</button>
+    <button class="p letter-btn">P</button>
+    <button class="q letter-btn">Q</button>
+    <button class="r letter-btn">R</button>
+    <button class="s letter-btn">S</button>
+    <button class="t letter-btn">T</button>
+    <button class="u letter-btn">U</button>
+    <button class="v letter-btn">V</button>
+    <button class="w letter-btn">W</button>
+    <button class="x letter-btn">X</button>
+    <button class="y letter-btn">Y</button>
+    <button class="z letter-btn">Z</button>
+  `;
+}
+
 function newGame() {
+  const letterBtn = document.querySelectorAll('.letter-btn');
   //reset
   guessedLetter = '',
   tries = 8,
@@ -127,12 +159,14 @@ function newGame() {
 toggle(menu);
 
 startBtn.addEventListener('click', () => {
+  generateButtons();
   newGame();
   toggle(menu);
   toggle(game);
 });
 
 playAgainBtn.addEventListener('click', () => {
+  generateButtons();
   newGame();
   toggle(resultContainer);
   toggle(game);
