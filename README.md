@@ -11,3 +11,6 @@ https://chasacademy-linnea-svensson.github.io/Hanged-Man/
 Future plans:
 Setting a max-lenght for the generated word.
 Add media-queries for mobile.
+
+Most of the images have been modified by me but the OC belong to @catalyststuff on freepik.
+https://www.freepik.com/author/catalyststuff.
