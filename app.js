@@ -61,8 +61,11 @@ function checkWinCondition(answer){
 
   if (win) {
     resultText.innerText = 'You Won!';
+    resultContainer.style.background = `url('img/win.jpg') no-repeat center center/cover`;
   } else {
     resultText.innerText = 'You Lost';
+    resultContainer.style.background = `url('img/loose.jpg') no-repeat center center/cover`;
+    // resultContainer.innerHTML = '<img src="img/loose.jpg"></img>';
   }
 
   answerDiv.innerHTML = `

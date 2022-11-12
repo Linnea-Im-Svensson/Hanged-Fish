@@ -9,5 +9,5 @@ Deployed Site:
 https://chasacademy-linnea-svensson.github.io/Hanged-Man/
 
 Future plans:
-Styling the game with images and css.
 Setting a max-lenght for the generated word.
+Add media-queries for mobile.

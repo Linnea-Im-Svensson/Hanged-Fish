@@ -25,10 +25,16 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   gap: 2rem;
   border-radius: 15px;
   border: var(--line-color) solid 5px;
+  background: url('img/menu.jpg') no-repeat top center/cover;
+  padding: 1.5rem;
+}
+
+.menu-container h1 {
+  font-size: 4rem;
 }
 
 .game-container {
@@ -49,7 +55,8 @@ body {
   width: 45rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 1rem;
   flex-direction: column;
   background: var(--primary-color);
   border-radius: 15px;
@@ -67,12 +74,26 @@ body {
   font-size: 1.1rem;
 }
 
+.btn:hover {
+  background: #fc8bbe;
+}
+
+.result {
+  font-size: 3.5rem;
+  font-weight: bolder;
+}
+
 .answer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 2rem 0;
+  margin: auto 0 1rem 0;
+  background: #FFFFFF;
+  padding: 1rem 2rem;
+  border: var(--line-color) solid 7px;
+  border-radius: 15px;
+  font-size: 2rem;
 }
 
 .word {
