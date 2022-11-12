@@ -75,34 +75,14 @@ function checkWinCondition(answer){
 };
 
 function generateButtons(){
-  buttonDiv.innerHTML = `
-    <button class="a letter-btn">A</button>
-    <button class="b letter-btn">B</button>
-    <button class="c letter-btn">C</button>
-    <button class="d letter-btn">D</button>
-    <button class="e letter-btn">E</button>
-    <button class="f letter-btn">F</button>
-    <button class="g letter-btn">G</button>
-    <button class="h letter-btn">H</button>
-    <button class="i letter-btn">I</button>
-    <button class="j letter-btn">J</button>
-    <button class="k letter-btn">K</button>
-    <button class="l letter-btn">L</button>
-    <button class="m letter-btn">M</button>
-    <button class="n letter-btn">N</button>
-    <button class="o letter-btn">O</button>
-    <button class="p letter-btn">P</button>
-    <button class="q letter-btn">Q</button>
-    <button class="r letter-btn">R</button>
-    <button class="s letter-btn">S</button>
-    <button class="t letter-btn">T</button>
-    <button class="u letter-btn">U</button>
-    <button class="v letter-btn">V</button>
-    <button class="w letter-btn">W</button>
-    <button class="x letter-btn">X</button>
-    <button class="y letter-btn">Y</button>
-    <button class="z letter-btn">Z</button>
-  `;
+  //Resets buttons before adding new
+  buttonDiv.innerHTML = '';
+
+  for(let i = 97; i <= 122; i++){
+    buttonDiv.innerHTML += `
+      <button class="${String.fromCharCode(i)} letter-btn">${String.fromCharCode(i).toUpperCase()}</button>
+    `;
+  }
 }
 
 function newGame() {
@@ -118,7 +98,6 @@ function newGame() {
   });
 
   fetchApi().then(word => {
-    console.log(word);
     const letterDiv = generateEmptyLetters(word);
     wordDiv.innerHTML = letterDiv;
     generateHangedMan();

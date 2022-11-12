@@ -27,14 +27,15 @@ body {
 
 .game-container {
   height: 40rem;
-  width: 50rem;
+  width: 55rem;
   background: #cdcdcd;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
   overflow: hidden;
   padding: 1rem;
+  border-radius: 15px;
 }
 
 .result-container {
@@ -64,6 +65,8 @@ body {
   align-items: flex-end;
   justify-content: center;
   gap: 1rem;
+  margin-top: 2rem;
+  min-height: 3rem;
 }
 
 .word > div {
