@@ -6,7 +6,8 @@ const menu = document.querySelector('.menu-container'),
       resultContainer = document.querySelector('.result-container'),
       resultText = document.querySelector('.result'),
       playAgainBtn = document.querySelector('.play-again'),
-      buttonDiv = document.querySelector('.letters');
+      buttonDiv = document.querySelector('.letters'),
+      answerDiv = document.querySelector('.answer');
 
 let guessedLetter = '',
     tries = 8;
@@ -49,7 +50,7 @@ function updateHangedMan(tries) {
 };
 
 //Check to see if player won or lost
-function checkWinCondition(){
+function checkWinCondition(answer){
   let win = true;
   const divList = document.querySelectorAll('.word > div');
   divList.forEach(div => {
@@ -63,6 +64,11 @@ function checkWinCondition(){
   } else {
     resultText.innerText = 'You Lost';
   }
+
+  answerDiv.innerHTML = `
+  <h4>The answer was:<h4>
+  <h1>${answer}</h1>
+  `;
 
   toggle(game);
   toggle(resultContainer);
@@ -142,14 +148,11 @@ function newGame() {
           }
 
           if(tries === 0){
-            checkWinCondition();
+            checkWinCondition(word);
           } else if(flippedLetters == word.length) {
-            checkWinCondition();
+            checkWinCondition(word);
           }
         }
-        e.preventDefault();
-        // e.stopImmediatePropagation();
-        e.stopPropagation();
       })
     })
   });
