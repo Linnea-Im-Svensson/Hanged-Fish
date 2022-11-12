@@ -42,11 +42,11 @@ function generateEmptyLetters(fetchedWord) {
 };
 
 function generateHangedMan() {
-  hangedMan.innerHTML = tries;
+  hangedMan.innerHTML = '<img src="img/8.png"></img>';
 };
 
 function updateHangedMan(tries) {
-  hangedMan.innerHTML = tries;
+  hangedMan.innerHTML = `<img src="img/${tries}.png"></img>`;
 };
 
 //Check to see if player won or lost
@@ -80,13 +80,13 @@ function generateButtons(){
 
   for(let i = 97; i <= 122; i++){
     buttonDiv.innerHTML += `
-      <button class="${String.fromCharCode(i)} letter-btn">${String.fromCharCode(i).toUpperCase()}</button>
+      <button class="${String.fromCharCode(i)} btn">${String.fromCharCode(i).toUpperCase()}</button>
     `;
   }
 }
 
 function newGame() {
-  const letterBtn = document.querySelectorAll('.letter-btn');
+  const letterBtn = document.querySelectorAll('.letters .btn');
   //reset
   guessedLetter = '',
   tries = 8,

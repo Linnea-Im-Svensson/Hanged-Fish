@@ -5,8 +5,10 @@
 }
 
 :root {
-  --primary-color: #cdcdcd;
-  --secondary-color: #333;
+  --primary-color: #E1F1FF;
+  --secondary-color: #54BBF8;
+  --line-color: #000072;
+  --btn-color: #FEB8D7;
 }
 
 body {
@@ -18,38 +20,51 @@ body {
 }
 
 .menu-container {
+  height: 45rem;
+  width: 45rem;
   display: flex;
   align-items: center;
-  justify-items: center;
   flex-direction: column;
+  justify-content: center;
   gap: 2rem;
+  border-radius: 15px;
+  border: var(--line-color) solid 5px;
 }
 
 .game-container {
-  height: 40rem;
-  width: 55rem;
-  background: #cdcdcd;
+  height: 45rem;
+  width: 45rem;
+  background: var(--primary-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
   overflow: hidden;
-  padding: 1rem;
   border-radius: 15px;
+  border: var(--line-color) solid 5px;
 }
 
 .result-container {
+  height: 45rem;
+  width: 45rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background: var(--primary-color);
+  border-radius: 15px;
+  border: var(--line-color) solid 5px;
 }
 
 .btn {
-  padding: 1rem;
+  padding: 0.7rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 15px;
   cursor: pointer;
+  background: var(--btn-color);
+  border: var(--line-color) solid 3px;
+  min-width: 4rem;
+  font-size: 1.1rem;
 }
 
 .answer {
@@ -65,7 +80,7 @@ body {
   align-items: flex-end;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
   min-height: 3rem;
 }
 
@@ -82,25 +97,19 @@ body {
 
 .line {
   height: 0.3rem;
-  width: 3rem;
-  background: #000;
+  width: 2rem;
+  background: var(--line-color);
 }
 
 .letters {
-  margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-}
-
-.letter-btn {
   padding: 1rem;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  min-width: 4rem;
+  background: var(--secondary-color);
+  width: 100%;
 }
 
 .guessed {
@@ -109,7 +118,14 @@ body {
 }
 
 .hanged-man {
-  margin: 2rem 0;
+  margin: 2rem 0 0 0 ;
+  min-height: 20rem;
+  width: 23rem;
+}
+
+img {
+  width: 100%;
+  height: auto;
 }
 
 .hide {
