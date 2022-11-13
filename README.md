@@ -14,7 +14,6 @@ Most of the images have been modified by me in Adobe Flash but the OC belong to 
 
 ### GitHub repo: :point_down:
 
-Github repository:
 https://github.com/ChasAcademy-Linnea-Svensson/Hanged-Man
 
 ### Deployed here: :point_down:
