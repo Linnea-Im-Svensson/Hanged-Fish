@@ -10,9 +10,7 @@ https://github.com/ChasAcademy-Linnea-Svensson
 
 A classic hanged man game but with a cute twist.
 
-Most of the images have been modified by me in Adobe Flash but the OC belong to @catalyststuff on freepik.
-
-https://www.freepik.com/author/catalyststuff.
+Most of the images have been modified by me in Adobe Flash but the OC belong to Catalyststuff[^1].
 
 ### GitHub repo: :point_down:
 
@@ -28,3 +26,7 @@ https://chasacademy-linnea-svensson.github.io/Hanged-Man/
 - [x] Add images and style the game :tada:
 - [ ] Setting a max-lenght for the generated word.
 - [ ] Add media-queries for mobile.
+
+[^1]:
+    @catalyststuff on freepik.
+    https://www.freepik.com/author/catalyststuff.
