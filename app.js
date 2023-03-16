@@ -1,36 +1,35 @@
 const menu = document.querySelector('.menu-container'),
-      game = document.querySelector('.game-container'),
-      startBtn = document.querySelector('.start-game'),
-      wordDiv = document.querySelector('.word'),
-      hangedMan = document.querySelector('.hanged-man'),
-      resultContainer = document.querySelector('.result-container'),
-      resultText = document.querySelector('.result'),
-      playAgainBtn = document.querySelector('.play-again'),
-      buttonDiv = document.querySelector('.letters'),
-      answerDiv = document.querySelector('.answer');
+  game = document.querySelector('.game-container'),
+  startBtn = document.querySelector('.start-game'),
+  wordDiv = document.querySelector('.word'),
+  hangedMan = document.querySelector('.hanged-man'),
+  resultContainer = document.querySelector('.result-container'),
+  resultText = document.querySelector('.result'),
+  playAgainBtn = document.querySelector('.play-again'),
+  buttonDiv = document.querySelector('.letters'),
+  answerDiv = document.querySelector('.answer');
 
 let guessedLetter = '',
-    tries = 8;
+  tries = 8;
 
 async function fetchApi() {
-  const response = await fetch('https://api.api-ninjas.com/v1/randomword/');
-
-  if(response.ok){
+  const response = await fetch('https://random-word-api.herokuapp.com/word');
+  if (response.ok) {
     const data = await response.json();
-    return data.word.toLowerCase();
+    return data[0];
   } else {
     console.log('error');
   }
 }
 
-function toggle(div){
+function toggle(div) {
   div.classList.toggle('hide');
-};
+}
 
 //Generate the empty spaces for each letter in the word
 function generateEmptyLetters(fetchedWord) {
   let letterDiv = '';
-  for (let i = 0; i < fetchedWord.length; i++){
+  for (let i = 0; i < fetchedWord.length; i++) {
     letterDiv += `
       <div class="${fetchedWord[i]}">
         <div class="letter hide">${fetchedWord[i]}</div>
@@ -39,21 +38,21 @@ function generateEmptyLetters(fetchedWord) {
     `;
   }
   return letterDiv;
-};
+}
 
 function generateHangedMan() {
   hangedMan.innerHTML = '<img src="img/8.png"></img>';
-};
+}
 
 function updateHangedMan(tries) {
   hangedMan.innerHTML = `<img src="img/${tries}.png"></img>`;
-};
+}
 
 //Check to see if player won or lost
-function checkWinCondition(answer){
+function checkWinCondition(answer) {
   let win = true;
   const divList = document.querySelectorAll('.word > div');
-  divList.forEach(div => {
+  divList.forEach((div) => {
     if (div.firstElementChild.classList[1] === 'hide') {
       win = false;
     }
@@ -75,15 +74,17 @@ function checkWinCondition(answer){
 
   toggle(game);
   toggle(resultContainer);
-};
+}
 
-function generateButtons(){
+function generateButtons() {
   //Resets buttons before adding new
   buttonDiv.innerHTML = '';
 
-  for(let i = 97; i <= 122; i++){
+  for (let i = 97; i <= 122; i++) {
     buttonDiv.innerHTML += `
-      <button class="${String.fromCharCode(i)} btn">${String.fromCharCode(i).toUpperCase()}</button>
+      <button class="${String.fromCharCode(i)} btn">${String.fromCharCode(
+      i
+    ).toUpperCase()}</button>
     `;
   }
 }
@@ -91,30 +92,31 @@ function generateButtons(){
 function newGame() {
   const letterBtn = document.querySelectorAll('.letters .btn');
   //reset
-  guessedLetter = '',
-  tries = 8,
-  flippedLetters = 0,
-  resultText.innerText = '';
+  (guessedLetter = ''),
+    (tries = 8),
+    (flippedLetters = 0),
+    (resultText.innerText = '');
 
-  letterBtn.forEach(div => {
+  letterBtn.forEach((div) => {
     div.classList.remove('guessed');
   });
 
-  fetchApi().then(word => {
+  fetchApi().then((word) => {
+    console.log(word);
     const letterDiv = generateEmptyLetters(word);
     wordDiv.innerHTML = letterDiv;
     generateHangedMan();
 
-    letterBtn.forEach(letter => {
+    letterBtn.forEach((letter) => {
       let clicked = 0;
-      
+
       letter.addEventListener('click', (e) => {
         clicked++;
-        if (clicked < 2){
-        guessedLetter = letter.className[0];
-        const emptyLetters = document.querySelectorAll('.word > div')
-        let status = false;
-          emptyLetters.forEach(emptyLetter => {
+        if (clicked < 2) {
+          guessedLetter = letter.className[0];
+          const emptyLetters = document.querySelectorAll('.word > div');
+          let status = false;
+          emptyLetters.forEach((emptyLetter) => {
             if (guessedLetter === emptyLetter.className[0]) {
               emptyLetter.firstElementChild.classList.remove('hide');
               flippedLetters++;
@@ -122,21 +124,21 @@ function newGame() {
             }
 
             letter.classList.add('guessed');
-          })
+          });
 
           if (!status) {
             tries--;
             updateHangedMan(tries);
           }
 
-          if(tries === 0){
+          if (tries === 0) {
             checkWinCondition(word);
-          } else if(flippedLetters == word.length) {
+          } else if (flippedLetters == word.length) {
             checkWinCondition(word);
           }
         }
-      })
-    })
+      });
+    });
   });
 }
 
@@ -155,4 +157,4 @@ playAgainBtn.addEventListener('click', () => {
   newGame();
   toggle(resultContainer);
   toggle(game);
-})
+});
