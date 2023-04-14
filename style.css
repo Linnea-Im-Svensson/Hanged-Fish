@@ -5,10 +5,10 @@
 }
 
 :root {
-  --primary-color: #E1F1FF;
-  --secondary-color: #54BBF8;
+  --primary-color: #e1f1ff;
+  --secondary-color: #54bbf8;
   --line-color: #000072;
-  --btn-color: #FEB8D7;
+  --btn-color: #feb8d7;
 }
 
 body {
@@ -17,6 +17,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background: url('/img/back.jpg') no-repeat center center/cover;
 }
 
 .menu-container {
@@ -89,7 +90,7 @@ body {
   align-items: center;
   justify-content: center;
   margin: auto 0 1rem 0;
-  background: #FFFFFF;
+  background: #ffffff;
   padding: 1rem 2rem;
   border: var(--line-color) solid 7px;
   border-radius: 15px;
@@ -141,7 +142,7 @@ body {
 }
 
 .hanged-man {
-  margin: 2rem 0 0 0 ;
+  margin: 2rem 0 0 0;
   min-height: 20rem;
   width: 23rem;
 }
